@@ -196,3 +196,8 @@ a:visited {
     width: 100px;
     
 }
+.ielts_img1_align{
+    padding: 60px;
+    text-align: left;
+/*    padding-left: 0;*/
+}
