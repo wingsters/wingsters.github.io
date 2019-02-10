@@ -196,3 +196,292 @@ a:visited {
     width: 100px;
     
 }
+.container {
+    width: 1040px;
+}
+/******************************************************************
+
+Helpers
+
+******************************************************************/
+
+.block {
+    display: block;
+  }
+  
+  .italic {
+      font-style:italic;
+  }
+  
+  .hidden {
+      display:none !important;
+  }
+  
+  .cf:before,
+  .cf:after {
+      content: " "; /* 1 */
+      display: table; /* 2 */
+  }
+  
+  .cf:after {
+      clear: both;
+  }
+  
+  /**
+   * For IE 6/7 only
+   * Include this rule to trigger hasLayout and contain floats.
+   */
+  .cf {
+      *zoom: 1;
+  }
+  
+  .overflow-fix {
+      overflow: hidden;
+  }
+  
+  .nounderline {
+    text-decoration: none !important;
+  }
+  
+  .text-left {
+    text-align: left;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-right {
+    text-align: right;
+  }
+  
+  .lowercase {
+    text-transform: lowercase !important;
+  }
+  
+  small {
+      font-size: 80%;
+  }
+  
+  strong {
+      font-weight: 600;
+  }
+  
+  .container {
+      position: relative;
+  }
+  
+  .image-circle {
+      border-radius: 50%;
+  }
+  
+  .image-responsive {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .pull-left {
+      float: left;
+  }
+  
+  .pull-right {
+      float: right;
+  }
+  
+  // HW accelerator
+  .hw {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+  }
+  
+  .last {
+      margin-right: 0 !important;
+  }
+  
+  /*
+   * Image replacement
+   */
+  .ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+  }
+  
+  .ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+  }
+  
+  .text-hide {
+    color: transparent;
+    font-size: 0;
+    text-shadow: none;
+    vertical-align: middle;
+  }
+  
+  .fixed {
+      position: fixed;
+  }
+  
+  .relative {
+      position: relative;
+  }
+  
+  .absolute {
+      position: absolute;
+  }
+  
+  .full-width {
+      width: 100%;
+  }
+  .half-width {
+      width: 50%;
+  }
+  
+  .center {
+      margin: 0 auto;
+  }
+  
+  .smooth {
+      -webkit-transition: all 0.2s ease;
+      -moz-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+      -o-transition: all 0.2s ease;
+  }
+
+  /******************************************************************
+
+Mixins
+
+Based on: Bones - github.com/eddiemachado/bones
+
+******************************************************************/
+
+/*
+USAGE: @include transition(all 0.2s ease-in-out);
+*/
+
+@mixin transition($transition...) {
+    // defining prefixes so we can use them in mixins below
+    $prefixes:      ("-webkit-", "" );
+    @each $prefix in $prefixes {
+      #{$prefix}transition: $transition;
+    }
+  }
+  
+  /*********************
+  CSS3 GRADIENTS
+  *********************/
+  
+  /* @include css-gradient(#dfdfdf,#f8f8f8); */
+  @mixin css-gradient($from: #dfdfdf, $to: #f8f8f8) {
+      background-color: $to;
+      background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+      background-image: -webkit-linear-gradient(top, $from, $to);
+      background-image: -moz-linear-gradient(top, $from, $to);
+      background-image: -o-linear-gradient(top, $from, $to);
+      background-image: linear-gradient(to bottom, $from, $to);
+  }
+  
+  /*********************
+  BOX SIZING
+  *********************/
+  
+  /* @include box-sizing(border-box); */
+  @mixin box-sizing($type: border-box) {
+      -webkit-box-sizing: $type;
+      -moz-box-sizing:    $type;
+      -ms-box-sizing:     $type;
+      box-sizing:         $type;
+  }
+  
+  
+  /******************************************************************
+
+Print stylesheet
+
+******************************************************************/
+
+* {
+    background: transparent !important;
+    color: black !important;
+    text-shadow: none !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+  
+  a, a:visited {
+    color: #444 !important;
+    text-decoration: underline;
+  
+    // show links on printed pages
+    &:after {
+      content: " (" attr(href) ")";
+    }
+  
+    // show title too
+    abbr[title]:after {
+      content: " (" attr(title) ")";
+    }
+  }
+  
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  
+  thead {
+    display: table-header-group;
+  }
+  
+  tr, img {
+    page-break-inside: avoid;
+  }
+  
+  img {
+    max-width: 100% !important;
+  }
+  
+    @page {
+      margin: 0.5cm;
+    }
+  
+    p, h2, h3 {
+      orphans: 3;
+      widows: 3;
+    }
+  
+    h2,
+    h3 {
+      page-break-after: avoid;
+    }
+  
+    // hide content people who print don't need to see
+    .sidebar,
+    .page-navigation,
+    .wp-prev-next,
+    .respond-form,
+    nav {
+      display: none;
+    }
+  
