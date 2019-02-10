@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng b --prod --base-href https://wingsters.github.io/wingsters.github.io/ && angular-cli-ghpages --branch gh-pages --dir=dist/wingsters.github.io"
+
   },
   "private": true,
   "dependencies": {
